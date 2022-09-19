@@ -1,4 +1,5 @@
 using FluentAssertions.Common;
+using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Products;
 using HKBookStore.Data.EF;
 using HKBookStore.Utilities.Constants;
@@ -12,8 +13,9 @@ builder.Services.AddDbContext<HKBookStoreDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
 //Declare DI
-
+builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
+builder.Services.AddTransient<IManageProductService, ManageProductService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

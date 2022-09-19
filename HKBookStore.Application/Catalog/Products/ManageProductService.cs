@@ -25,7 +25,7 @@ namespace HKBookStore.Application.Catalog.Products
             _storageService = storageService;
         }
 
-        public Task<int> AddImages(int productId, List<IFormFile> files)
+        public async Task<int> AddImages(int productId, List<IFormFile> files)
         {
             throw new NotImplementedException();
         }
@@ -69,7 +69,8 @@ namespace HKBookStore.Application.Catalog.Products
                 };
             }
             _context.Products.Add(product);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return product.Id;
         }
 
         public async Task<int> Delete(int productId)
@@ -128,6 +129,26 @@ namespace HKBookStore.Application.Catalog.Products
                 Items = data
             };
             return pagedResult;
+        }
+
+        public async Task<ProductViewModel> GetById(int productId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Author = product.Author,
+                Description = product.Description,
+                Details = product.Details,
+                Price = product.Price,
+                OriginalPrice = product.OriginalPrice,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount,
+                DateCreated = product.DateCreated,
+            };
+            return productViewModel;
         }
 
         public Task<List<ProductImageViewModel>> GetListImage(int productId)
