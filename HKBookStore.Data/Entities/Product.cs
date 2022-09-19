@@ -23,6 +23,7 @@ namespace HKBookStore.Data.Entities
         public List<ProductInCategory> ProductInCategories { set; get; }
         public List<OrderDetail> OrderDetails { set; get; }
         public List<Cart> Carts { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
 
     }
 }
