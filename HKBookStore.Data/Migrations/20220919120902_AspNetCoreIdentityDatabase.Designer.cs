@@ -4,6 +4,7 @@ using HKBookStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HKBookStore.Data.Migrations
 {
     [DbContext(typeof(HKBookStoreDbContext))]
-    partial class HKBookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220919120902_AspNetCoreIdentityDatabase")]
+    partial class AspNetCoreIdentityDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,16 +78,6 @@ namespace HKBookStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "69fb7392-a735-47f7-bc40-a651c559aa9e",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.AppUser", b =>
@@ -152,27 +144,6 @@ namespace HKBookStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "211e4fe7-14eb-44c9-aa26-54e13f3eee83",
-                            Dob = new DateTime(2001, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "duonghoangkha2001@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Hoang Kha",
-                            LastName = "Duong",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "duonghoangkha2001@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO5nzDOI3TheM86mY4D+sikrgZL34UQMO6gdgpskkFyMUWKvhx0yMDH8n+O7OTfr8A==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.Cart", b =>
@@ -477,7 +448,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 1,
                             Author = "Paulo Coelho",
-                            DateCreated = new DateTime(2022, 9, 19, 19, 12, 17, 368, DateTimeKind.Local).AddTicks(236),
+                            DateCreated = new DateTime(2022, 9, 19, 19, 9, 2, 105, DateTimeKind.Local).AddTicks(5391),
                             Description = "Đây là mô tả của sách Nhà Giả Kim (Tái Bản 2020)",
                             Details = "Đây là chi tiết của sách Nhà Giả Kim (Tái Bản 2020)",
                             Name = "Nhà Giả Kim (Tái Bản 2020)",
@@ -490,7 +461,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 2,
                             Author = "Khotudien",
-                            DateCreated = new DateTime(2022, 9, 19, 19, 12, 17, 368, DateTimeKind.Local).AddTicks(247),
+                            DateCreated = new DateTime(2022, 9, 19, 19, 9, 2, 105, DateTimeKind.Local).AddTicks(5400),
                             Description = "Đây là mô tả của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Details = "Đây là chi tiết của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Name = "Từ Điển Tiếng “Em” - Tái Bản 2021",
@@ -690,13 +661,6 @@ namespace HKBookStore.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
