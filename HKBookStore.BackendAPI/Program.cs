@@ -4,6 +4,7 @@ using HKBookStore.Data.EF;
 using HKBookStore.Utilities.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,11 @@ builder.Services.AddTransient<IPublicProductService, PublicProductService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger HK BookStore", Version = "v1" });
+});
 
 var app = builder.Build();
 
@@ -33,6 +39,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger HKBookStore V1");
+});
 
 app.MapControllerRoute(
     name: "default",
