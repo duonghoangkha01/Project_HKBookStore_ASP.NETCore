@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HKBookStore.Data\HKBookStore.Data.csproj" />
+  </ItemGroup>
+
 </Project>
