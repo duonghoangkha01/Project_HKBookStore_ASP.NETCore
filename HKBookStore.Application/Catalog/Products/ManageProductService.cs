@@ -3,7 +3,6 @@ using HKBookStore.Data.EF;
 using HKBookStore.Data.Entities;
 using HKBookStore.Utilities.Exceptions;
 using HKBookStore.ViewModels.Catalog.Products;
-using HKBookStore.ViewModels.Catalog.Products.Manage;
 using HKBookStore.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -88,7 +87,7 @@ namespace HKBookStore.Application.Catalog.Products
         }
 
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1. Select join
             var query = from p in _context.Products

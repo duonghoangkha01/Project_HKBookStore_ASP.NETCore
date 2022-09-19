@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HKBookStore.Application\HKBookStore.Application.csproj" />
+    <ProjectReference Include="..\HKBookStore.Data\HKBookStore.Data.csproj" />
+    <ProjectReference Include="..\HKBookStore.Utilities\HKBookStore.Utilities.csproj" />
+    <ProjectReference Include="..\HKBookStore.ViewModels\HKBookStore.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

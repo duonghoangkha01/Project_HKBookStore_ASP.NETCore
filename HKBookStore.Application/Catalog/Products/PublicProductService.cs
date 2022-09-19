@@ -1,6 +1,5 @@
 ﻿using HKBookStore.Data.EF;
 using HKBookStore.ViewModels.Catalog.Products;
-using HKBookStore.ViewModels.Catalog.Products.Public;
 using HKBookStore.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,7 +17,32 @@ namespace HKBookStore.Application.Catalog.Products
         {
             _context = context;
         }
-        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request)
+
+        public async Task<List<ProductViewModel>> GetAll()
+        {
+            var query = from p in _context.Products
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        select new { p, pic };
+
+            var data = await query.Select(x => new ProductViewModel()
+            {
+                Id = x.p.Id,
+                Name = x.p.Name,
+                Author = x.p.Author,
+                Description = x.p.Description,
+                Details = x.p.Details,
+                Price = x.p.Price,
+                OriginalPrice = x.p.OriginalPrice,
+                Stock = x.p.Stock,
+                ViewCount = x.p.ViewCount,
+                DateCreated = x.p.DateCreated,
+            }).ToListAsync();
+            return data;
+
+        }
+
+        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
         {
             //1. Select join
             var query = from p in _context.Products
