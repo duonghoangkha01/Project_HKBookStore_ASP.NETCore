@@ -1,5 +1,6 @@
 ﻿using HKBookStore.Application.Catalog.Dtos;
 using HKBookStore.Application.Catalog.Products.Dtos;
+using HKBookStore.Application.Catalog.Products.Dtos.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace HKBookStore.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        PagedViewModel<ProductViewModel> GetAllByCategoryId(int categoryId, int pageIndex, int pageSize);
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request);
     }
 }

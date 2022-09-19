@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Data", "HKBookS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Application", "HKBookStore.Application\HKBookStore.Application.csproj", "{D25228F7-F1AC-47A1-A598-347F5C764040}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Utilities", "HKBookStore.Utilities\HKBookStore.Utilities.csproj", "{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D25228F7-F1AC-47A1-A598-347F5C764040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25228F7-F1AC-47A1-A598-347F5C764040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25228F7-F1AC-47A1-A598-347F5C764040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

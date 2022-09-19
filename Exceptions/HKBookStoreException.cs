@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HKBookStore.Application.Catalog.Products.Dtos
+namespace Exceptions
 {
-    public class ProductEditRequest
+    internal class HKBookStoreException
     {
     }
 }

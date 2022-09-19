@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace HKBookStore.Application.Catalog.Dtos
 {
-    public class PagedViewModel<T>
+    public class PagingRequestBase
     {
-        public List<T> Items { set; get; }
-        public int TotalRecord { set; get; }
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
     }
 }
