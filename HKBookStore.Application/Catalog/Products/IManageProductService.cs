@@ -1,6 +1,7 @@
-﻿using HKBookStore.Application.Catalog.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos.Manage;
+﻿using HKBookStore.ViewModels.Catalog.Products;
+using HKBookStore.ViewModels.Catalog.Products.Manage;
+using HKBookStore.ViewModels.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,12 @@ namespace HKBookStore.Application.Catalog.Products
         Task AddViewcount(int productId);
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+        Task<int> AddImages(int productId, List<IFormFile> files);
+
+        Task<int> RemoveImages(int imageId);
+
+        Task<int> UpdateImage(int imageId, string caption, bool isDefault);
+
+        Task<List<ProductImageViewModel>> GetListImage(int productId);
     }
 }

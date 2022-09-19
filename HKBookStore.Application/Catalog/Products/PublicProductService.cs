@@ -1,7 +1,7 @@
-﻿using HKBookStore.Application.Catalog.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos.Public;
-using HKBookStore.Data.EF;
+﻿using HKBookStore.Data.EF;
+using HKBookStore.ViewModels.Catalog.Products;
+using HKBookStore.ViewModels.Catalog.Products.Public;
+using HKBookStore.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

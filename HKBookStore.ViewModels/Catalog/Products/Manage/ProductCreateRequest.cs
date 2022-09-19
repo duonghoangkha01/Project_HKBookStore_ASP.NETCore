@@ -1,11 +1,11 @@
-﻿using HKBookStore.Data.Entities;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HKBookStore.Application.Catalog.Products.Dtos.Manage
+namespace HKBookStore.ViewModels.Catalog.Products.Manage
 {
     public class ProductCreateRequest
     {
@@ -16,6 +16,7 @@ namespace HKBookStore.Application.Catalog.Products.Dtos.Manage
         public decimal Price { set; get; }
         public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
+        public IFormFile ThumbnailImage { get; set; }
 
     }
 }

@@ -1,14 +1,17 @@
-﻿using HKBookStore.Application.Catalog.Dtos;
+﻿using HKBookStore.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HKBookStore.Application.Catalog.Products.Dtos.Public
+namespace HKBookStore.ViewModels.Catalog.Products.Manage
 {
     public class GetProductPagingRequest : PagingRequestBase
     {
-        public int? CategoryId { get; set; }
+        public string Keyword { get; set; }
+
+        public List<int> CategoryIds { get; set; }
+
     }
 }

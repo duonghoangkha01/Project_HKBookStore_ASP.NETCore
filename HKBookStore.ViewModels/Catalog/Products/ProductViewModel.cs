@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HKBookStore.Application.Catalog.Products.Dtos
+namespace HKBookStore.ViewModels.Catalog.Products
 {
     public class ProductViewModel
     {

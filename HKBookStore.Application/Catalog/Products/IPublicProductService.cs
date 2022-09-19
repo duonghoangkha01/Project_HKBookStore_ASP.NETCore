@@ -1,6 +1,6 @@
-﻿using HKBookStore.Application.Catalog.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos;
-using HKBookStore.Application.Catalog.Products.Dtos.Public;
+﻿using HKBookStore.ViewModels.Catalog.Products;
+using HKBookStore.ViewModels.Catalog.Products.Public;
+using HKBookStore.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

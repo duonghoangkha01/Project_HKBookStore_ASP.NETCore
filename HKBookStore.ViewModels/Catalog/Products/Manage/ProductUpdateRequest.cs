@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HKBookStore.Application.Catalog.Products.Dtos.Manage
+namespace HKBookStore.ViewModels.Catalog.Products.Manage
 {
     public class ProductUpdateRequest
     {
@@ -13,7 +14,7 @@ namespace HKBookStore.Application.Catalog.Products.Dtos.Manage
         public string Author { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }
-
+        public IFormFile ThumbnailImage { get; set; }
 
     }
 }
