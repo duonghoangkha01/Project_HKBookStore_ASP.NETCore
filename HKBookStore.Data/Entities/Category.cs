@@ -13,10 +13,13 @@ namespace HKBookStore.Data.Entities
         public string Name { set; get; }
         public int SortOrder { set; get; }
         public bool IsShowOnHome { set; get; }
-        public int? ParentId { set; get; }
         public Status Status { set; get; }
 
+        public int? ParentId { set; get; }
+        public Category? ParentCategory { set; get; }
 
+
+        public List<Category> ChildCategories { set; get; }
         public List<ProductInCategory> ProductInCategories { set; get; }
     }
 }
