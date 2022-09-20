@@ -1,8 +1,11 @@
 using FluentAssertions.Common;
 using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Products;
+using HKBookStore.Application.System.Users;
 using HKBookStore.Data.EF;
+using HKBookStore.Data.Entities;
 using HKBookStore.Utilities.Constants;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
@@ -12,10 +15,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<HKBookStoreDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
+builder.Services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<HKBookStoreDbContext>()
+                .AddDefaultTokenProviders();
+
 //Declare DI
 builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
 builder.Services.AddTransient<IManageProductService, ManageProductService>();
+
+builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
