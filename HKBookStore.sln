@@ -3,22 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.WepApp", "HKBookStore.WepApp\HKBookStore.WepApp.csproj", "{3FC8E3DA-947B-4B97-BC83-55E2AAF7998A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.WepApp", "HKBookStore.WepApp\HKBookStore.WepApp.csproj", "{3FC8E3DA-947B-4B97-BC83-55E2AAF7998A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E59C3920-A386-412D-AE15-7616B32CEB8E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution Items", "0. Solution Items", "{E59C3920-A386-412D-AE15-7616B32CEB8E}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Data", "HKBookStore.Data\HKBookStore.Data.csproj", "{F4231111-219A-402B-B72A-623D941ECA05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.Data", "HKBookStore.Data\HKBookStore.Data.csproj", "{F4231111-219A-402B-B72A-623D941ECA05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Application", "HKBookStore.Application\HKBookStore.Application.csproj", "{D25228F7-F1AC-47A1-A598-347F5C764040}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.Application", "HKBookStore.Application\HKBookStore.Application.csproj", "{D25228F7-F1AC-47A1-A598-347F5C764040}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.Utilities", "HKBookStore.Utilities\HKBookStore.Utilities.csproj", "{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.Utilities", "HKBookStore.Utilities\HKBookStore.Utilities.csproj", "{084739AC-9E70-42E4-B4DF-15E54C5AAB6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.ViewModels", "HKBookStore.ViewModels\HKBookStore.ViewModels.csproj", "{7307909C-0F1C-4993-AF08-5DFF8723B1D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.ViewModels", "HKBookStore.ViewModels\HKBookStore.ViewModels.csproj", "{7307909C-0F1C-4993-AF08-5DFF8723B1D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HKBookStore.BackendAPI", "HKBookStore.BackendAPI\HKBookStore.BackendAPI.csproj", "{A6EC06B8-DD58-4943-9424-2C51A6FE63D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HKBookStore.BackendAPI", "HKBookStore.BackendAPI\HKBookStore.BackendAPI.csproj", "{A6EC06B8-DD58-4943-9424-2C51A6FE63D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Infrastructure", "1. Infrastructure", "{A273F888-603F-4BB3-86B6-28257CEAEC4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{1B908A6C-64B9-45D4-BB78-46B469BE2A33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{70BFF7D6-7F53-4676-8603-82E28FF2DDF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3FC8E3DA-947B-4B97-BC83-55E2AAF7998A} = {70BFF7D6-7F53-4676-8603-82E28FF2DDF3}
+		{F4231111-219A-402B-B72A-623D941ECA05} = {1B908A6C-64B9-45D4-BB78-46B469BE2A33}
+		{D25228F7-F1AC-47A1-A598-347F5C764040} = {1B908A6C-64B9-45D4-BB78-46B469BE2A33}
+		{084739AC-9E70-42E4-B4DF-15E54C5AAB6E} = {A273F888-603F-4BB3-86B6-28257CEAEC4C}
+		{7307909C-0F1C-4993-AF08-5DFF8723B1D5} = {A273F888-603F-4BB3-86B6-28257CEAEC4C}
+		{A6EC06B8-DD58-4943-9424-2C51A6FE63D5} = {70BFF7D6-7F53-4676-8603-82E28FF2DDF3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DCE969B-E8D6-49CC-8075-27A371E26B4A}
