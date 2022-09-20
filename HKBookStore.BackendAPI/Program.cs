@@ -1,10 +1,12 @@
 using FluentAssertions.Common;
+using FluentValidation.AspNetCore;
 using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Products;
 using HKBookStore.Application.System.Users;
 using HKBookStore.Data.EF;
 using HKBookStore.Data.Entities;
 using HKBookStore.Utilities.Constants;
+using HKBookStore.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,8 +33,12 @@ builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<IUserService, UserService>();
 
+
+//services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+//services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
 builder.Services.AddSwaggerGen(c =>
 {
