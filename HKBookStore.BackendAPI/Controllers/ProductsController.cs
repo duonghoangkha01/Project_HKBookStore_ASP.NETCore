@@ -1,6 +1,7 @@
 ﻿using HKBookStore.Application.Catalog.Products;
 using HKBookStore.ViewModels.Catalog.ProductImages;
 using HKBookStore.ViewModels.Catalog.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace HKBookStore.BackendAPI.Controllers
     //api/products
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] 
     public class ProductsController : ControllerBase
     {
         private readonly IPublicProductService _publicProductService;
