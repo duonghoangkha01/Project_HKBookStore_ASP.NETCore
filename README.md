@@ -14,3 +14,4 @@
 ## Youtube demo
 ## How to configure and run
 ## How to contribute
+## Admin template: https://startbootstrap.com/template/sb-admin
