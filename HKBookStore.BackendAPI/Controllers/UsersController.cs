@@ -32,7 +32,7 @@ namespace HKBookStore.BackendAPI.Controllers
             return Ok(resultToken);
         }
 
-        [HttpPost("register")]
+        [HttpPost()]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
@@ -45,6 +45,15 @@ namespace HKBookStore.BackendAPI.Controllers
                 return BadRequest("Register is unsuccessful.");
             }
             return Ok();
+        }
+
+
+        //http://localhost/api/users/paging?pageIndex=1&pageSize=10&keyword=
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetUserPagingRequest request)
+        {
+            var users = await _userService.GetUsersPaging(request);
+            return Ok(users);
         }
     }
 }

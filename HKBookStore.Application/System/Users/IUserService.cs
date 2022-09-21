@@ -1,4 +1,5 @@
-﻿using HKBookStore.ViewModels.System.Users;
+﻿using HKBookStore.ViewModels.Common;
+using HKBookStore.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace HKBookStore.Application.System.Users
         Task<string> Authencate(LoginRequest request);
 
         Task<bool> Register(RegisterRequest request);
+        Task<PagedResult<UserViewModel>> GetUsersPaging(GetUserPagingRequest request);
     }
 }
