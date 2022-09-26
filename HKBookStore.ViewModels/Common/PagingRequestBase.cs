@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HKBookStore.ViewModels.Common
 {
-    public class PagingRequestBase : RequestBase
+    public class PagingRequestBase
     {
         public int PageIndex { get; set; }
 
