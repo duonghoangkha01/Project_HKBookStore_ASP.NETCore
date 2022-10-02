@@ -3,6 +3,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Products;
+using HKBookStore.Application.System.Roles;
 using HKBookStore.Application.System.Users;
 using HKBookStore.Data.EF;
 using HKBookStore.Data.Entities;
@@ -32,6 +33,7 @@ builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRoleService, RoleService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
