@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using HKBookStore.Utilities.Constants;
 
 namespace HKBookStore.AdminApp.Controllers
 {
@@ -47,7 +48,7 @@ namespace HKBookStore.AdminApp.Controllers
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
-            HttpContext.Session.SetString("Token", result.ResultObj);
+            HttpContext.Session.SetString(SystemConstants.AppSettings.Token, result.ResultObj);
             await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         userPrincipal,

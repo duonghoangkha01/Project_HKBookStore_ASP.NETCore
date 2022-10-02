@@ -20,16 +20,13 @@ namespace HKBookStore.BackendAPI.Controllers
             _productService = productService;
         }
 
-
-        //http://localhost:port/products?pageIndex=1&pageSize=10&CategoryId=1
-        [HttpGet()]
-        public async Task<IActionResult> GetAllPaging([FromQuery] GetPublicProductPagingRequest request)
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageProductPagingRequest request)
         {
-            var products = await _productService.GetAllByCategoryId(request);
+            var products = await _productService.GetAllPaging(request);
             return Ok(products);
         }
 
-        //http://localhost:port/products/1
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetById(int productId)
         {

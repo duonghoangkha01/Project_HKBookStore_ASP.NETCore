@@ -116,7 +116,7 @@ namespace HKBookStore.Application.Catalog.Products
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.p.Name.Contains(request.Keyword));
 
-            if (request.CategoryIds.Count > 0)
+            if (request.CategoryIds != null && request.CategoryIds.Count > 0)
             {
                 query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
             }

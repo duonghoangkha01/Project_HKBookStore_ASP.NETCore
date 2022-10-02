@@ -9,5 +9,11 @@ namespace HKBookStore.Utilities.Constants
     public class SystemConstants
     {
         public const string MainConnectionString = "HKBookStoreDb";
+
+        public class AppSettings
+        {
+            public const string Token = "Token";
+            public const string BaseAddress = "BaseAddress";
+        }
     }
 }
