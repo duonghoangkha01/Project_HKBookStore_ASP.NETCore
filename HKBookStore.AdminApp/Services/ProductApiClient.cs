@@ -27,7 +27,8 @@ namespace HKBookStore.AdminApp.Services
             var data = await GetAsync<PagedResult<ProductViewModel>>(
                 $"/api/products/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
-                $"&keyword={request.Keyword}");
+                $"&keyword={request.Keyword}" +
+                $"&categoryId={request.CategoryId}");
 
             return data;
         }

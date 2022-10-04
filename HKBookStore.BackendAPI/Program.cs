@@ -1,6 +1,7 @@
 using FluentAssertions.Common;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using HKBookStore.Application.Catalog.Categories;
 using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Products;
 using HKBookStore.Application.System.Roles;
@@ -28,6 +29,7 @@ builder.Services.AddIdentity<AppUser, AppRole>()
 //Declare DI
 builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
