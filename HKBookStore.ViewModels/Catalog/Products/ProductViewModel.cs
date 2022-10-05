@@ -18,5 +18,6 @@ namespace HKBookStore.ViewModels.Catalog.Products
         public int Stock { set; get; }
         public int ViewCount { set; get; }
         public DateTime DateCreated { set; get; }
+        public List<string> Categories { get; set; } = new List<string>();
     }
 }
