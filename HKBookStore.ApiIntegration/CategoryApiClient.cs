@@ -1,6 +1,8 @@
 ﻿using HKBookStore.ViewModels.Catalog.Categories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public class CategoryApiClient : BaseApiClient, ICategoryApiClient
     {

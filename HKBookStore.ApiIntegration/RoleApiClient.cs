@@ -1,9 +1,11 @@
 ﻿using HKBookStore.ViewModels.Common;
 using HKBookStore.ViewModels.System.Roles;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public class RoleApiClient : IRoleApiClient
     {

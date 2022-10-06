@@ -1,8 +1,10 @@
 ﻿using HKBookStore.Utilities.Constants;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public class BaseApiClient
     {

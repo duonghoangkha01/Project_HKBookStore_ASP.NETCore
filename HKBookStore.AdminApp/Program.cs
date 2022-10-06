@@ -1,5 +1,5 @@
 using FluentValidation.AspNetCore;
-using HKBookStore.AdminApp.Services;
+using HKBookStore.ApiIntegration;
 using HKBookStore.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 

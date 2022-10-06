@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using HKBookStore.AdminApp.Services;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using HKBookStore.Utilities.Constants;
+using HKBookStore.ApiIntegration;
 
 namespace HKBookStore.AdminApp.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using HKBookStore.ViewModels.Catalog.Products;
 using HKBookStore.ViewModels.Common;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public interface IProductApiClient
     {

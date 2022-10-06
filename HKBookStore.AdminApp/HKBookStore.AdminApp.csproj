@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HKBookStore.ApiIntegration\HKBookStore.ApiIntegration.csproj" />
     <ProjectReference Include="..\HKBookStore.Utilities\HKBookStore.Utilities.csproj" />
     <ProjectReference Include="..\HKBookStore.ViewModels\HKBookStore.ViewModels.csproj" />
   </ItemGroup>

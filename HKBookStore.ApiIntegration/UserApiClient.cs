@@ -1,10 +1,12 @@
 ﻿using HKBookStore.ViewModels.Common;
 using HKBookStore.ViewModels.System.Users;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public class UserApiClient : IUserApiClient
     {

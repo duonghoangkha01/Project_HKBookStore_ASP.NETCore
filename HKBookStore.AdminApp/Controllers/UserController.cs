@@ -1,5 +1,4 @@
-﻿using HKBookStore.AdminApp.Services;
-using HKBookStore.ViewModels.System.Users;
+﻿using HKBookStore.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +11,7 @@ using System.Configuration;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Reflection.Metadata.Ecma335;
 using HKBookStore.ViewModels.Common;
+using HKBookStore.ApiIntegration;
 
 namespace HKBookStore.AdminApp.Controllers
 {

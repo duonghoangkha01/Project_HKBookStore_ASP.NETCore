@@ -1,7 +1,7 @@
 ﻿using HKBookStore.ViewModels.Common;
 using HKBookStore.ViewModels.System.Users;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public interface IUserApiClient
     {

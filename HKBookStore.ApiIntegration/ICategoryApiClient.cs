@@ -1,6 +1,6 @@
 ﻿using HKBookStore.ViewModels.Catalog.Categories;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public interface ICategoryApiClient
     {

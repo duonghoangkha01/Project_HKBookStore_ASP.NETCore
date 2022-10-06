@@ -1,4 +1,4 @@
-﻿using HKBookStore.AdminApp.Services;
+﻿using HKBookStore.ApiIntegration;
 using HKBookStore.Utilities.Constants;
 using HKBookStore.ViewModels.Catalog.Products;
 using HKBookStore.ViewModels.Common;

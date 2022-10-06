@@ -5,8 +5,10 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {

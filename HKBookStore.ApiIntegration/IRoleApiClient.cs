@@ -1,7 +1,7 @@
 ﻿using HKBookStore.ViewModels.Common;
 using HKBookStore.ViewModels.System.Roles;
 
-namespace HKBookStore.AdminApp.Services
+namespace HKBookStore.ApiIntegration
 {
     public interface IRoleApiClient
     {
