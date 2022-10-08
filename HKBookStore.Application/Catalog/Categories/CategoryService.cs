@@ -26,7 +26,8 @@ namespace HKBookStore.Application.Catalog.Categories
             return await query.Select(x => new CategoryViewModel()
             {
                 Id = x.c.Id,
-                Name = x.c.Name
+                Name = x.c.Name,
+                ParentId = x.c.ParentId
             }).ToListAsync();
         }
     }

@@ -25,7 +25,8 @@ namespace HKBookStore.WebApp.Controllers
             var viewModel = new HomeViewModel
             {
                 Slides = await _slideApiClient.GetAll(),
-                FeaturedProducts = await _productApiClient.GetFeaturedProducts(SystemConstants.ProductSettings.NumberOfFeaturedProducts)
+                FeaturedProducts = await _productApiClient.GetFeaturedProducts(SystemConstants.ProductSettings.NumberOfFeaturedProducts),
+                LatestProducts = await _productApiClient.GetLatestProducts(SystemConstants.ProductSettings.NumberOfLatestProducts),
             };
 
             return View(viewModel);

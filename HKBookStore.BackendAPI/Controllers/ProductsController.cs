@@ -44,6 +44,14 @@ namespace HKBookStore.BackendAPI.Controllers
             return Ok(products);
         }
 
+        [HttpGet("latest/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetLatestProducts(int take)
+        {
+            var products = await _productService.GetLatestProducts(take);
+            return Ok(products);
+        }
+
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)

@@ -43,5 +43,7 @@ namespace HKBookStore.Application.Catalog.Products
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 
         Task<List<ProductViewModel>> GetFeaturedProducts(int take);
+
+        Task<List<ProductViewModel>> GetLatestProducts(int take);
     }
 }

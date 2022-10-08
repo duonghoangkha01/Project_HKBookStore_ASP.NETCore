@@ -10,5 +10,6 @@ namespace HKBookStore.ApiIntegration
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
         Task<ProductViewModel> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts(int take);
+        Task<List<ProductViewModel>> GetLatestProducts(int take);
     }
 }
