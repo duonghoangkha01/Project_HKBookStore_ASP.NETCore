@@ -179,6 +179,11 @@ namespace HKBookStore.Data.Extensions
                 RoleId = roleId,
                 UserId = adminId
             });
+
+            modelBuilder.Entity<Slide>().HasData(
+              new Slide() { Id = 1, Name = "First Thumbnail label", Description = "Đây là mô tả", SortOrder = 1, Url = "#", Image = "img/carousel-1.jpg", Status = Status.Active },
+              new Slide() { Id = 2, Name = "Second Thumbnail label", Description = "Đây là mô tả", SortOrder = 2, Url = "#", Image = "img/carousel-2.jpg", Status = Status.Active }
+              );
         }
 
     }

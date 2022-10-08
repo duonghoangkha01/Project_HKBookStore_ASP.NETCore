@@ -18,6 +18,7 @@ namespace HKBookStore.ViewModels.Catalog.Products
         public decimal Price { set; get; }
         public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
+        public bool? IsFeatured { get; set; }
         public IFormFile ThumbnailImage { get; set; }
 
     }

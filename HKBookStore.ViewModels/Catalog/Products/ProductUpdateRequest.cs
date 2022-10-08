@@ -14,6 +14,7 @@ namespace HKBookStore.ViewModels.Catalog.Products
         public string Author { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }
+        bool? IsFeatured { get; set; }
         public IFormFile ThumbnailImage { get; set; }
 
     }

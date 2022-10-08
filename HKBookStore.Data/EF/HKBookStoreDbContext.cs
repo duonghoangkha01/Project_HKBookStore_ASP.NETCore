@@ -42,6 +42,7 @@ namespace HKBookStore.Data.EF
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            modelBuilder.ApplyConfiguration(new SlideConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
             //Data seeding
@@ -59,6 +60,7 @@ namespace HKBookStore.Data.EF
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<Slide> Slides { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
     }
