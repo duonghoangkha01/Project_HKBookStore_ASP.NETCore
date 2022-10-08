@@ -99,5 +99,11 @@ namespace HKBookStore.ApiIntegration
 
             return data;
         }
+
+        public async Task<List<ProductViewModel>> GetFeaturedProducts(int take)
+        {
+            var data = await GetListAsync<ProductViewModel>($"/api/products/featured/{take}");
+            return data;
+        }
     }
 }

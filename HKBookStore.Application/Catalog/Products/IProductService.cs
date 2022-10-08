@@ -1,4 +1,5 @@
-﻿using HKBookStore.ViewModels.Catalog.ProductImages;
+﻿using HKBookStore.Data.Entities;
+using HKBookStore.ViewModels.Catalog.ProductImages;
 using HKBookStore.ViewModels.Catalog.Products;
 using HKBookStore.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
@@ -40,5 +41,7 @@ namespace HKBookStore.Application.Catalog.Products
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
 
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
+
+        Task<List<ProductViewModel>> GetFeaturedProducts(int take);
     }
 }

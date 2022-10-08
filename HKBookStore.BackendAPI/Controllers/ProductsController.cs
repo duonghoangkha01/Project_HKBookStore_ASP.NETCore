@@ -36,6 +36,14 @@ namespace HKBookStore.BackendAPI.Controllers
             return Ok(product);
         }
 
+        [HttpGet("featured/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFeaturedProducts(int take)
+        {
+            var products = await _productService.GetFeaturedProducts(take);
+            return Ok(products);
+        }
+
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ProductCreateRequest request)
