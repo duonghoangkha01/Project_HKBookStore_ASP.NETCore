@@ -7,6 +7,7 @@ namespace HKBookStore.ApiIntegration
     {
         Task<PagedResult<ProductViewModel>> GetPagings(GetManageProductPagingRequest request);
         Task<bool> CreateProduct(ProductCreateRequest request);
+        Task<bool> UpdateProduct(ProductUpdateRequest request);
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
         Task<ProductViewModel> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts(int take);
