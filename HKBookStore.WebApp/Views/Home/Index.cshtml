@@ -165,17 +165,18 @@
             List<List<ProductViewModel>> featuredProducts = new List<List<ProductViewModel>>();
             List<ProductViewModel> featuredPart = new List<ProductViewModel>();
             var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+            @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
         }
         @for (int index = 0; index < Model.FeaturedProducts.Count; index++)
         {
             featuredPart.Add(Model.FeaturedProducts[index]);
-            if (featuredPart.Count == 4 || Model.FeaturedProducts.Count < 4)
+            if (featuredPart.Count < 4)
             {
                 featuredProducts.Add(featuredPart);
                 featuredPart = new List<ProductViewModel>();
             }
         }
-
+        
         @for (int index = 0; index < featuredProducts.Count; index++)
         {
             @foreach (var item in featuredProducts[index])
@@ -183,7 +184,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid" src="https://localhost:5001/user-content/@item.ThumbnailImage" alt="@item.Name">
+                            <img class="img-fluid" src="@(Configuration["BaseAddress"] + "/user-content/" + @item.ThumbnailImage)" alt="@item.Name">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">@item.Name</h6>
@@ -235,7 +236,7 @@
         @for (int index = 0; index < Model.LatestProducts.Count; index++)
         {
             latestPart.Add(Model.LatestProducts[index]);
-            if (latestPart.Count == 4 || Model.LatestProducts.Count < 4)
+            if (latestPart.Count < 4)
             {
                 latestProducts.Add(latestPart);
                 latestPart = new List<ProductViewModel>();
@@ -249,7 +250,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid" src="https://localhost:5001/user-content/@item.ThumbnailImage" alt="@item.Name">
+                            <img class="img-fluid" src="@(Configuration["BaseAddress"] + "/user-content/" + @item.ThumbnailImage)" alt="@item.Name">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">@item.Name</h6>

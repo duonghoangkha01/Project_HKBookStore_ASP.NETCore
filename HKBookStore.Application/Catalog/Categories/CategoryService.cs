@@ -30,5 +30,18 @@ namespace HKBookStore.Application.Catalog.Categories
                 ParentId = x.c.ParentId
             }).ToListAsync();
         }
+
+        public async Task<CategoryViewModel> GetById(int id)
+        {
+            var query = from c in _context.Categories
+                        where c.Id == id
+                        select new {c};
+            return await query.Select(x => new CategoryViewModel()
+            {
+                Id = x.c.Id,
+                Name = x.c.Name,
+                ParentId = x.c.ParentId
+            }).FirstOrDefaultAsync();
+        }
     }
 }

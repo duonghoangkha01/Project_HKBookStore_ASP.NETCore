@@ -20,5 +20,12 @@ namespace HKBookStore.BackendAPI.Controllers
             var categories = await _categoryService.GetAll();
             return Ok(categories);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var category = await _categoryService.GetById(id);
+            return Ok(category);
+        }
     }
 }

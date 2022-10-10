@@ -1,17 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HKBookStore.ApiIntegration;
+using HKBookStore.ViewModels.Catalog.Products;
+using HKBookStore.WebApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HKBookStore.WebApp.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Detail(int id)
+        private readonly IProductApiClient _productApiClient;
+        private readonly ICategoryApiClient _categoryApiClient;
+
+        public ProductController(IProductApiClient productApiClient, ICategoryApiClient categoryApiClient)
         {
-            return View();
+            _productApiClient = productApiClient;
+            _categoryApiClient = categoryApiClient;
         }
 
-        public IActionResult Category(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            return View();
+            var product = await _productApiClient.GetById(id);
+            return View(new ProductDetailViewModel()
+            {
+                Product = product,
+                Category = await _categoryApiClient.GetById(id)
+            });
+        }
+
+        public async Task<IActionResult> Category(int id, int page = 1)
+        {
+            var products = await _productApiClient.GetPagings(new GetManageProductPagingRequest()
+            {
+                CategoryId = id,
+                PageIndex = page,
+                PageSize = 10
+            });
+            return View(new ProductCategoryViewModel()
+            {
+                Category = await _categoryApiClient.GetById(id),
+                Products = products
+            }); ;
         }
     }
 }

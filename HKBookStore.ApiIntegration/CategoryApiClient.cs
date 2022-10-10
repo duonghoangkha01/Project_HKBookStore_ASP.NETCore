@@ -17,5 +17,10 @@ namespace HKBookStore.ApiIntegration
         {
             return await GetListAsync<CategoryViewModel>("/api/categories");
         }
+
+        public async Task<CategoryViewModel> GetById( int id)
+        {
+            return await GetAsync<CategoryViewModel>($"/api/categories/{id}");
+        }
     }
 }
