@@ -12,5 +12,6 @@ namespace HKBookStore.ApiIntegration
         Task<ProductViewModel> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts(int take);
         Task<List<ProductViewModel>> GetLatestProducts(int take);
+        Task<bool> DeleteProduct(int id);
     }
 }

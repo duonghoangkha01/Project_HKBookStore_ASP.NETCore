@@ -21,8 +21,7 @@ namespace HKBookStore.WebApp.Controllers
             var product = await _productApiClient.GetById(id);
             return View(new ProductDetailViewModel()
             {
-                Product = product,
-                Category = await _categoryApiClient.GetById(id)
+                Product = product
             });
         }
 

@@ -20,6 +20,7 @@ namespace HKBookStore.Application.Catalog.Products
     {
         private readonly HKBookStoreDbContext _context;
         private readonly IStorageService _storageService;
+        private const string USER_CONTENT_FOLDER_NAME = "user-content";
         public ProductService(HKBookStoreDbContext context, IStorageService storageService)
         {
             _context = context;
@@ -164,6 +165,7 @@ namespace HKBookStore.Application.Catalog.Products
                                     where pic.ProductId == productId
                                     select c.Name).ToListAsync();
 
+            var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
             var productViewModel = new ProductViewModel()
             {
                 Id = product.Id,
@@ -176,7 +178,8 @@ namespace HKBookStore.Application.Catalog.Products
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
                 DateCreated = product.DateCreated,
-                Categories = categories
+                Categories = categories,
+                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return productViewModel;
         }
@@ -304,7 +307,7 @@ namespace HKBookStore.Application.Catalog.Products
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
-            return fileName;
+            return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
         public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)

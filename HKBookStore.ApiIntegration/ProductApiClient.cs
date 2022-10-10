@@ -52,10 +52,11 @@ namespace HKBookStore.ApiIntegration
 
             //requestContent.Add(new StringContent(request.Id.ToString()), "id");
 
-            requestContent.Add(new StringContent(request.Name.ToString()), "name");
-            requestContent.Add(new StringContent(request.Description.ToString()), "description");
-            requestContent.Add(new StringContent(request.Name.ToString()), "author");
-            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Author) ? "" : request.Author.ToString()), "author");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
+
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Details) ? "" : request.Details.ToString()), "details");
 
             var response = await client.PutAsync($"/api/products/" + request.Id, requestContent);
             return response.IsSuccessStatusCode;
@@ -99,11 +100,11 @@ namespace HKBookStore.ApiIntegration
             requestContent.Add(new StringContent(request.Price.ToString()), "price");
             requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "originalPrice");
             requestContent.Add(new StringContent(request.Stock.ToString()), "stock");
-            requestContent.Add(new StringContent(request.Name.ToString()), "name");
-            requestContent.Add(new StringContent(request.Name.ToString()), "author");
-            requestContent.Add(new StringContent(request.Description.ToString()), "description");
-
-            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Author) ? "" : request.Author.ToString()), "author");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
+                                                 
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Details) ? "" : request.Details.ToString()), "details");
 
             var response = await client.PostAsync($"/api/products/", requestContent);
             return response.IsSuccessStatusCode;
@@ -145,6 +146,11 @@ namespace HKBookStore.ApiIntegration
         {
             var data = await GetListAsync<ProductViewModel>($"/api/products/latest/{take}");
             return data;
+        }
+
+        public async Task<bool> DeleteProduct(int id)
+        {
+            return await Delete($"/api/products/" + id);
         }
     }
 }
