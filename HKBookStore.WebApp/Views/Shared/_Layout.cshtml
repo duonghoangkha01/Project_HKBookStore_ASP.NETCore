@@ -88,8 +88,18 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#" class="nav-item nav-link">Chào, @User.Identity.Name</a>
+                                <form id="logout_form" action="/Account/Logout" method="post">
+                                    <a href="javascript:{}" onclick="document.getElementById('logout_form').submit();" class="nav-item nav-link">Đăng xuất</a>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/Account/Login" class="nav-item nav-link">Đăng nhập</a>
+                                <a href="" class="nav-item nav-link">Đăng ký</a>
+                            }
                         </div>
                     </div>
                 </nav>
