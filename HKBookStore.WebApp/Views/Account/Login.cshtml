@@ -1,10 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Login";
+﻿@model HKBookStore.ViewModels.System.Users.LoginRequest
+@{
+    ViewData["Title"] = "Đăng nhập";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <ul class="breadcrumb">
-    <li><a href="/">Home</a> <span class="divider">/</span></li>
-    <li class="active">Login</li>
+    <li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
+    <li class="active">Đăng nhập</li>
 </ul>
 
 <div class="container-fluid bg-secondary my-5">
@@ -13,13 +14,11 @@
 
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
-                       aria-controls="pills-login" aria-selected="true">Đăng nhập</a>
+                <li class="nav-item active">
+                    <a class="nav-link active" id="tab-login" href="#" >Đăng nhập</a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
-                       aria-controls="pills-register" aria-selected="false">Đăng ký</a>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab-register" href="/Account/Register">Đăng ký</a>
                 </li>
             </ul>
             <!-- Pills navs -->
@@ -46,18 +45,20 @@
                             </button>
                         </div>
 
-                        <p class="text-center">or:</p>
+                        <p class="text-center">hoặc:</p>
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="UserName" placeholder="Email" class="form-control" />
                             <label class="form-label" for="inputEmail">Email</label>
+                            <input type="text" name="UserName" placeholder="Email" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-error"></span>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" name="Password" placeholder="Password" class="form-control" />
                             <label class="form-label" for="inputPassword1">Mật khẩu</label>
+                            <input type="password" name="Password" placeholder="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-error"></span>
                         </div>
 
                         <!-- 2 column grid layout -->
@@ -75,72 +76,6 @@
                         <div class="text-center">
                             <p>Chưa có tài khoản? <a href="#!">Đăng ký</a></p>
                         </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                    <form>
-                        <div class="text-center mb-3">
-                            <p>Sign up with:</p>
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
-                        </div>
-
-                        <p class="text-center">or:</p>
-
-                        <!-- Name input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="registerName" class="form-control" />
-                            <label class="form-label" for="registerName">Name</label>
-                        </div>
-
-                        <!-- Username input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="registerUsername" class="form-control" />
-                            <label class="form-label" for="registerUsername">Username</label>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="registerEmail" class="form-control" />
-                            <label class="form-label" for="registerEmail">Email</label>
-                        </div>
-
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" />
-                            <label class="form-label" for="registerPassword">Password</label>
-                        </div>
-
-                        <!-- Repeat Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="registerRepeatPassword" class="form-control" />
-                            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                        </div>
-
-                        <!-- Checkbox -->
-                        <div class="form-check d-flex justify-content-center mb-4">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                   aria-describedby="registerCheckHelpText" />
-                            <label class="form-check-label" for="registerCheck">
-                                I have read and agree to the terms
-                            </label>
-                        </div>
-
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
                     </form>
                 </div>
             </div>
