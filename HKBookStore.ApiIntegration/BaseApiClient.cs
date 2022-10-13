@@ -80,5 +80,22 @@ namespace HKBookStore.ApiIntegration
             }
             return false;
         }
+
+        protected async Task<bool> PutAsync<TResponse>(string url)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            
+
+            var response = await client.PutAsync(url, null);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }
