@@ -1,4 +1,5 @@
 ﻿using HKBookStore.ApiIntegration;
+using HKBookStore.ViewModels.Catalog.Carts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,16 +15,24 @@ namespace HKBookStore.WebApp.Controllers
         {
             _cartApiClient = cartApiClient;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<CartItemViewModel> carts = await _cartApiClient.GetCarts();
+            return View(carts);
+        }
+
+        public async Task<IActionResult> GetListItems()
+        {
+            List<CartItemViewModel> carts = await _cartApiClient.GetCarts();
+            return Ok(carts);
         }
 
 
         public async Task<IActionResult> AddToCart(int productId)
         {
-            _cartApiClient.AddItemToCart(productId);
-            return Ok();
+            await _cartApiClient.AddItemToCart(productId);
+            List<CartItemViewModel> carts = await _cartApiClient.GetCarts();
+            return Ok(carts);
         }
     }
 }

@@ -43,5 +43,29 @@ namespace HKBookStore.Application.Catalog.Carts
             }
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<List<CartItemViewModel>> GetListCarts(Guid userId)
+        {
+            var query = from c in _context.Carts
+                        join p in _context.Products on c.ProductId equals p.Id
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                        where c.UserId == userId && (pi == null || pi.IsDefault == true)
+                        select new {c, p, pi};
+                
+            var data = await query.OrderByDescending(x => x.c.DateCreated)
+                .Select(x => new CartItemViewModel()
+                {
+                    Id = x.c.Id,
+                    ProductId = x.c.ProductId,
+                    ProductName = x.p.Name,
+                    ProductDescription = x.p.Description,
+                    Quantity = x.c.Quantity,
+                    Price = x.c.Price,
+                    ProductImage = x.pi.ImagePath,
+                })
+                .ToListAsync();
+            return data;
+        }
     }
 }

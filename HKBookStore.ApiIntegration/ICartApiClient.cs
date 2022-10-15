@@ -4,6 +4,7 @@ namespace HKBookStore.ApiIntegration
 {
     public interface ICartApiClient
     {
+        Task<List<CartItemViewModel>> GetCarts();
         Task<bool>  AddItemToCart(int productId);
     }
 }

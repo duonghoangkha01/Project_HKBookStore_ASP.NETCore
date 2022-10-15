@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,6 +27,7 @@
 </head>
 
 <body>
+    <input type="hidden" id="hidBaseAddress" value="@Configuration["BaseAddress"]" />
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row align-items-center py-3 px-xl-5">
@@ -53,7 +55,7 @@
                 </a>
                 <a href="~/cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge" id="lbl_number_items_header">0</span>
                 </a>
             </div>
         </div>
@@ -200,6 +202,11 @@
     <script src="~/js/main.js"></script>
 
     <script src="~/js/site.js"></script>
+    <script>
+        var site = new SiteController();
+        site.initialize();
+    </script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>

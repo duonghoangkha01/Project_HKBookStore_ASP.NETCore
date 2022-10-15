@@ -23,6 +23,24 @@ namespace HKBookStore.BackendAPI.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet("")]
+        [Authorize]
+        public async Task<IActionResult> GetCarts()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
+            var user = await _userManager.FindByNameAsync(claim.Value);
+            Guid userId = user.Id;
+            if (claim == null)
+                return BadRequest();
+            else
+            {
+                var carts = await _cartService.GetListCarts(userId);
+                return Ok(carts);
+            }
+
+        }
+
         [HttpPut("add/{productId}")]
         [Authorize]
         public async Task<IActionResult> AddItemToCart([FromRoute] int productId)

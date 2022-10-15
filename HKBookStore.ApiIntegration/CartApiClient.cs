@@ -1,4 +1,5 @@
-﻿using HKBookStore.ViewModels.Catalog.Categories;
+﻿using HKBookStore.ViewModels.Catalog.Carts;
+using HKBookStore.ViewModels.Catalog.Categories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -11,6 +12,11 @@ namespace HKBookStore.ApiIntegration
                     IConfiguration configuration)
             : base(httpClientFactory, httpContextAccessor, configuration)
         {
+        }
+
+        public async Task<List<CartItemViewModel>> GetCarts()
+        {
+            return await GetAsync<List<CartItemViewModel>>(@"/api/carts/");
         }
 
         public async Task<bool> AddItemToCart(int productId)

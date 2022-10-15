@@ -16,5 +16,6 @@ namespace HKBookStore.Application.Catalog.Carts
     public interface ICartService
     {
         Task<int> AddItemToCart(Guid userId, int productId);
+        Task<List<CartItemViewModel>> GetListCarts(Guid userId);
     }
 }
