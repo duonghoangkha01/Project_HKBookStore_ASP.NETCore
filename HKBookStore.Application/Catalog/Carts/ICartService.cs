@@ -17,5 +17,6 @@ namespace HKBookStore.Application.Catalog.Carts
     {
         Task<int> AddItemToCart(Guid userId, int productId);
         Task<List<CartItemViewModel>> GetListCarts(Guid userId);
+        Task<int> UpdateCart(Guid userId, int productId, int quantity);
     }
 }

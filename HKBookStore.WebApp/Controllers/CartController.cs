@@ -34,5 +34,13 @@ namespace HKBookStore.WebApp.Controllers
             List<CartItemViewModel> carts = await _cartApiClient.GetCarts();
             return Ok(carts);
         }
+
+        public async Task<IActionResult> UpdateCart(int productId, int quantity)
+        {
+            var result = await _cartApiClient.UpdateCart(productId, quantity);
+            if(result==false)
+                return BadRequest();
+            return Ok();
+        }
     }
 }

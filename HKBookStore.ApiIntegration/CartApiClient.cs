@@ -24,5 +24,9 @@ namespace HKBookStore.ApiIntegration
             return await PutAsync<bool>(@"/api/carts/add/" + productId);
         }
 
+        public async Task<bool> UpdateCart(int productId, int quantity)
+        {
+            return await PutAsync<bool>(@"/api/carts/update?productId=" + productId + "&quantity=" + quantity);
+        }
     }
 }

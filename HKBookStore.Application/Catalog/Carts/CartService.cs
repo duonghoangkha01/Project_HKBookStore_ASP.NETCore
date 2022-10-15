@@ -67,5 +67,23 @@ namespace HKBookStore.Application.Catalog.Carts
                 .ToListAsync();
             return data;
         }
+
+        public async Task<int> UpdateCart(Guid userId, int productId, int quantity)
+        {
+            var cartFromDb = await _context.Carts.Where(c => c.UserId == userId && c.ProductId == productId).FirstOrDefaultAsync();
+
+            if (cartFromDb != null)
+            {
+                if (quantity == 0)
+                {
+                    _context.Carts.Remove(cartFromDb);
+                }
+                else
+                {
+                    cartFromDb.Quantity = quantity;
+                }
+            }
+            return await _context.SaveChangesAsync();
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace HKBookStore.ApiIntegration
     {
         Task<List<CartItemViewModel>> GetCarts();
         Task<bool>  AddItemToCart(int productId);
+        Task<bool> UpdateCart(int productId, int quantity);
     }
 }
