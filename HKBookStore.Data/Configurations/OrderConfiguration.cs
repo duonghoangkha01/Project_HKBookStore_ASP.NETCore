@@ -21,15 +21,11 @@ namespace HKBookStore.Data.Configurations
 
             builder.Property(x => x.OrderDate);
 
-            builder.Property(x => x.ShipEmail).IsRequired().IsUnicode(false).HasMaxLength(50);
 
-            builder.Property(x => x.ShipAddress).IsRequired().HasMaxLength(200);
-
-            builder.Property(x => x.ShipName).IsRequired().HasMaxLength(200);
-
-            builder.Property(x => x.ShipPhoneNumber).IsRequired().HasMaxLength(200);
-
-            builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.UserId).IsRequired(false);
+            builder.HasOne(x => x.Payment).WithMany(x => x.Orders).HasForeignKey(x => x.PaymentId);
+            builder.HasOne(x => x.ShippingFee).WithMany(x => x.Orders).HasForeignKey(x => x.ShippingFeeId);
+            builder.HasOne(x => x.ShippingInfo).WithMany(x => x.Orders).HasForeignKey(x => x.ShippingInfoId);
         }
     }
 }

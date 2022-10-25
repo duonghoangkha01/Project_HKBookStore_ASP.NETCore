@@ -171,7 +171,8 @@ namespace HKBookStore.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Hoang Kha",
                 LastName = "Duong",
-                Dob = new DateTime(2001, 12, 04)
+                Dob = new DateTime(2001, 12, 04),
+                Address = "An Biên, Kiên Giang"
             });
 
             modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>

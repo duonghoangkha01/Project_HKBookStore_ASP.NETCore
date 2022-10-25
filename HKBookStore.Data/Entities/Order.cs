@@ -12,14 +12,20 @@ namespace HKBookStore.Data.Entities
         public int Id { set; get; }
         public DateTime OrderDate { set; get; }
         public Guid UserId { set; get; }
-        public string ShipName { set; get; }
-        public string ShipAddress { set; get; }
-        public string ShipEmail { set; get; }
-        public string ShipPhoneNumber { set; get; }
         public OrderStatus Status { set; get; }
 
         public List<OrderDetail> OrderDetails { set; get; }
 
         public AppUser AppUser { get; set; }
+        public Invoice Invoice { get; set; }
+        public int PaymentId { get; set; }
+        public Payment Payment { get; set; }
+
+        public int ShippingFeeId { get; set; }
+        public ShippingFee ShippingFee { get; set; }
+        public int ShippingInfoId { get; set; }
+        public ShippingInfo ShippingInfo { get; set; }
+
+
     }
 }

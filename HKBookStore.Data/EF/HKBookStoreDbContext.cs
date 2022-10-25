@@ -54,12 +54,16 @@ namespace HKBookStore.Data.EF
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Invoice> Invoice { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Payment> Payment { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<ShippingFee> ShippingFee { get; set; }
+        public DbSet<ShippingInfo> ShippingInfo { get; set; }
         public DbSet<Slide> Slides { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
