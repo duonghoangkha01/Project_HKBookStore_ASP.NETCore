@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using HKBookStore.Application.Catalog.Carts;
 using HKBookStore.Application.Catalog.Categories;
 using HKBookStore.Application.Catalog.Common;
+using HKBookStore.Application.Catalog.Orders;
 using HKBookStore.Application.Catalog.Products;
 using HKBookStore.Application.System.Roles;
 using HKBookStore.Application.System.Users;
@@ -33,7 +34,7 @@ builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ICartService, CartService>();
-
+builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();

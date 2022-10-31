@@ -97,5 +97,23 @@ namespace HKBookStore.ApiIntegration
 
             return response.IsSuccessStatusCode;
         }
+
+        protected async Task<bool> PostAsync<TResponse>(string url, StringContent stringContent)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+
+            var response = await client.PostAsync(url, stringContent);
+
+            return response.IsSuccessStatusCode;
+        }
+
     }
 }

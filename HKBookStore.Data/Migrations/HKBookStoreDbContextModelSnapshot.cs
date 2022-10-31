@@ -81,7 +81,7 @@ namespace HKBookStore.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "4958ce7d-a8a4-49a7-888f-312ac3710455",
+                            ConcurrencyStamp = "001e44ad-d443-4324-a1dd-6fb71b426f0c",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -163,7 +163,7 @@ namespace HKBookStore.Data.Migrations
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
                             Address = "An Biên, Kiên Giang",
-                            ConcurrencyStamp = "915c9382-d22a-4ae6-8b62-8c4a784113f9",
+                            ConcurrencyStamp = "0d4e31ba-7fca-4d34-b4e6-88b6f2e53f81",
                             Dob = new DateTime(2001, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "duonghoangkha2001@gmail.com",
                             EmailConfirmed = true,
@@ -172,7 +172,7 @@ namespace HKBookStore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "duonghoangkha2001@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMsPbls9Vuxd3PT6aveyRqq8zLluVvwYjxrCltEjjmWHUV+hr6K0LgQ4N0/XeLjQpg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEINPY9rn5p48SWSCtK00mXhh6FgQNLKV1HL1L2RbNr7UJL8FoDtX6rfU4yzlN3EKRQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -383,7 +383,7 @@ namespace HKBookStore.Data.Migrations
                     b.HasIndex("OrderId")
                         .IsUnique();
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoices", (string)null);
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.Order", b =>
@@ -464,7 +464,7 @@ namespace HKBookStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Payment");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.Product", b =>
@@ -522,7 +522,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 1,
                             Author = "Paulo Coelho",
-                            DateCreated = new DateTime(2022, 10, 22, 12, 11, 28, 784, DateTimeKind.Local).AddTicks(2812),
+                            DateCreated = new DateTime(2022, 10, 30, 12, 5, 43, 466, DateTimeKind.Local).AddTicks(7029),
                             Description = "Đây là mô tả của sách Nhà Giả Kim (Tái Bản 2020)",
                             Details = "Đây là chi tiết của sách Nhà Giả Kim (Tái Bản 2020)",
                             Name = "Nhà Giả Kim (Tái Bản 2020)",
@@ -535,7 +535,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 2,
                             Author = "Khotudien",
-                            DateCreated = new DateTime(2022, 10, 22, 12, 11, 28, 784, DateTimeKind.Local).AddTicks(2823),
+                            DateCreated = new DateTime(2022, 10, 30, 12, 5, 43, 466, DateTimeKind.Local).AddTicks(7039),
                             Description = "Đây là mô tả của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Details = "Đây là chi tiết của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Name = "Từ Điển Tiếng “Em” - Tái Bản 2021",
@@ -669,7 +669,7 @@ namespace HKBookStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShippingFee");
+                    b.ToTable("ShippingFees", (string)null);
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.ShippingInfo", b =>
@@ -684,33 +684,27 @@ namespace HKBookStore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("ShippingInfo");
+                    b.ToTable("ShippingInfos", (string)null);
                 });
 
             modelBuilder.Entity("HKBookStore.Data.Entities.Slide", b =>
@@ -1047,9 +1041,7 @@ namespace HKBookStore.Data.Migrations
                 {
                     b.HasOne("HKBookStore.Data.Entities.AppUser", "AppUser")
                         .WithMany("ShippingInfos")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("AppUser");
                 });
