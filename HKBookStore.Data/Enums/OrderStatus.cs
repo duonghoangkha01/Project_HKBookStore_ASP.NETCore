@@ -8,10 +8,11 @@ namespace HKBookStore.Data.Enums
 {
     public enum OrderStatus
     {
-        InProgress,
-        Confirmed,
-        Shipping,
-        Success,
-        Canceled
+        Pending,
+        Approved,
+        Progressing,
+        Shipped,
+        Cancelled,
+        Refunded
     }
 }

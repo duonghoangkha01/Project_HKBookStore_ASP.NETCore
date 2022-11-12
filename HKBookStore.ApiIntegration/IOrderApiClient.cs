@@ -10,5 +10,6 @@ namespace HKBookStore.ApiIntegration
     public interface IOrderApiClient
     {
         Task<bool> AddOrder(CheckoutViewModel checkoutRequest);
+        Task<List<GetOrderViewModel>> GetAll();
     }
 }

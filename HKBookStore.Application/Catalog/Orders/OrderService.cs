@@ -1,4 +1,5 @@
-﻿using HKBookStore.Application.Catalog.Common;
+﻿using HKBookStore.Application.Catalog.Carts;
+using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Data.EF;
 using HKBookStore.Data.Entities;
 using HKBookStore.Data.Enums;
@@ -16,10 +17,50 @@ namespace HKBookStore.Application.Catalog.Orders
     public class OrderService : IOrderService
     {
         private readonly HKBookStoreDbContext _context;
+        private readonly ICartService _cartService;
 
-        public OrderService(HKBookStoreDbContext context)
+        public OrderService(HKBookStoreDbContext context, ICartService cartService)
         {
             _context = context;
+            _cartService = cartService;
+        }
+
+        public async Task<List<GetOrderViewModel>> GetAll(Guid userId)
+        {
+            //var query = from o in _context.Orders
+            //            join od in _context.OrderDetails on o.Id equals od.OrderId
+            //            join p in _context.Products on od.ProductId equals p.Id
+            //            where o.UserId == userId
+            //            select new { o, od, p };
+            
+
+            var query = _context.Orders.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Where(x => x.UserId == userId).ToList();
+
+            var data = new List<GetOrderViewModel>();
+            foreach (var item in query)
+            {
+                var order = new GetOrderViewModel()
+                {
+                    Id = item.Id,
+                    OrderDate = item.OrderDate,
+                    Status = item.Status,
+                    OrderDetails = new List<GetOrderDetailViewModel>(),
+                };
+                foreach (var item2 in item.OrderDetails)
+                {
+                    var orderDetail = new GetOrderDetailViewModel()
+                    {
+                        ProductName = item2.Product.Name,
+                        Quantity = item2.Quantity,
+                        Price = item2.Price,
+                    };
+                    order.OrderDetails.Add(orderDetail);
+
+                }
+                data.Add(order);
+            }
+
+            return data;
         }
 
         public async Task<int> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)
@@ -47,7 +88,7 @@ namespace HKBookStore.Application.Catalog.Orders
             var order = new Order()
             {
                 OrderDate = DateTime.Now,
-                Status = OrderStatus.InProgress,
+                Status = OrderStatus.Pending,
                 OrderDetails = orderDetails,
                 UserId = userId,
                 ShippingFeeId = 1,
@@ -55,6 +96,9 @@ namespace HKBookStore.Application.Catalog.Orders
                 ShippingInfo = shippingInfo,
             };
             _context.Orders.Add(order);
+            
+            await _cartService.DeleteAllCarts(userId);
+
             return await _context.SaveChangesAsync();
         }
     }

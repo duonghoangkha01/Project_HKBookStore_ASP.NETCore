@@ -61,6 +61,25 @@ namespace HKBookStore.BackendAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetAll()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
+            var user = await _userManager.FindByNameAsync(claim.Value);
+            Guid userId = user.Id;
+            if (claim == null)
+                return BadRequest();
+            else
+            {
+                var result = await _orderService.GetAll(userId);
+                
+                return Ok(result);
+            }
+
+        }
+
         //[HttpPut("update")]
         //[Authorize]
         //public async Task<IActionResult> UpdateCart([FromQuery] int productId, [FromQuery] int quantity)
