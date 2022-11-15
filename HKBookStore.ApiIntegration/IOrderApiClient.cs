@@ -1,4 +1,5 @@
-﻿using HKBookStore.ViewModels.Catalog.Orders;
+﻿using HKBookStore.Data.Enums;
+using HKBookStore.ViewModels.Catalog.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace HKBookStore.ApiIntegration
     public interface IOrderApiClient
     {
         Task<bool> AddOrder(CheckoutViewModel checkoutRequest);
-        Task<List<GetOrderViewModel>> GetAll();
+        Task<List<GetOrderViewModel>> GetAll(string? status);
     }
 }

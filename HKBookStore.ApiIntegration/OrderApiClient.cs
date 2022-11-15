@@ -27,9 +27,9 @@ namespace HKBookStore.ApiIntegration
             return await PostAsync<bool>(@"api/orders/add", httpContent);
         }
 
-        public async Task<List<GetOrderViewModel>> GetAll()
+        public async Task<List<GetOrderViewModel>> GetAll(string status)
         {
-            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders");
+            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders?status="+status);
 
         }
     }

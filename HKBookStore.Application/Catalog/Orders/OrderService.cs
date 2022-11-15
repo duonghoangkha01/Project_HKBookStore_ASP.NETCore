@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace HKBookStore.Application.Catalog.Orders
             _cartService = cartService;
         }
 
-        public async Task<List<GetOrderViewModel>> GetAll(Guid userId)
+        public async Task<List<GetOrderViewModel>> GetAll(Guid userId, string? status)
         {
             //var query = from o in _context.Orders
             //            join od in _context.OrderDetails on o.Id equals od.OrderId
@@ -35,7 +36,8 @@ namespace HKBookStore.Application.Catalog.Orders
             
 
             var query = _context.Orders.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Where(x => x.UserId == userId).ToList();
-
+            if (status != null)
+                query = query.Where(x => x.Status == status).ToList();
             var data = new List<GetOrderViewModel>();
             foreach (var item in query)
             {

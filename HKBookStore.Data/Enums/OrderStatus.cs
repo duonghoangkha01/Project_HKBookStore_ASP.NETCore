@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HKBookStore.Data.Enums
 {
-    public enum OrderStatus
+    public static class OrderStatus
     {
-        Pending,
-        Approved,
-        Progressing,
-        Shipped,
-        Cancelled,
-        Refunded
+        public const string Pending = "Chờ xác nhận";
+        public const string Approved = "Đã xác nhận";
+        public const string Progressing = "Đang giao";
+        public const string Shipped = "Đã giao";
+        public const string Cancelled = "Đã hủy";
+        public const string Refunded = "Đã hoàn lại";
     }
 }

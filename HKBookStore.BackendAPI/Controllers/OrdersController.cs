@@ -63,7 +63,7 @@ namespace HKBookStore.BackendAPI.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]string? status)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
@@ -73,7 +73,7 @@ namespace HKBookStore.BackendAPI.Controllers
                 return BadRequest();
             else
             {
-                var result = await _orderService.GetAll(userId);
+                var result = await _orderService.GetAll(userId, status);
                 
                 return Ok(result);
             }

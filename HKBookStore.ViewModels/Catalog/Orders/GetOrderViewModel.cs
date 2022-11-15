@@ -13,7 +13,7 @@ namespace HKBookStore.ViewModels.Catalog.Orders
     {
         public int Id { set; get; }
         public DateTime OrderDate { set; get; }
-        public OrderStatus Status { set; get; }
+        public string Status { set; get; }
         public List<GetOrderDetailViewModel> OrderDetails { set; get; }
         
     }

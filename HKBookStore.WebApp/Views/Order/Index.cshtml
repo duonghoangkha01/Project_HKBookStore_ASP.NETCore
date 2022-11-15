@@ -1,0 +1,94 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    var pending = "text-primary";
+    var approved = "text-primary";
+    var progressing = "text-primary";
+    var shipped = "text-primary";
+    var cancelled = "text-primary";
+    var refunded = "text-primary";
+    var all = "text-primary";
+
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white";
+            break;
+        case "approved":
+            approved = "active text-white";
+            break;
+        case "progressing":
+            progressing = "active text-white";
+            break;
+        case "shipped":
+            shipped = "active text-white";
+            break;
+        case "cancelled":
+            cancelled = "active text-white";
+            break;
+        case "refunded":
+            refunded = "active text-white";
+            break;
+        default:
+            all = "active text-white";
+            break;
+    }
+
+}
+
+<div class="container p-3">
+    <div class="d-flex justify-content-between pt-4">
+        <div class="p-2">
+            <h2 class="text-primary">Danh sách đơn hàng</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="pending">
+                <li class="list-group-item @pending">Chờ xác nhận</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="approved">
+                <li class="list-group-item @approved">Đã xác nhận</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="progressing">
+                <li class="list-group-item @progressing">Đang giao</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="shipped">
+                <li class="list-group-item @shipped">Đã giao</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="cancelled">
+                <li class="list-group-item @cancelled">Đã hủy</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="refunded">
+                <li class="list-group-item @refunded">Đã hoàn lại</li>
+                </a>
+                <a style="text-decoration:none;" asp-controller="Order"
+                   asp-action="Index" asp-route-status="all">
+                <li class="list-group-item @all">Tất cả</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <br /><br />
+
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Các sản phẩm</th>
+                <th>Thời gian đặt hàng</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/order.js"></script>
+    <script type="text/JavaScript" src="https://MomentJS.com/downloads/moment.js"></script>
+}

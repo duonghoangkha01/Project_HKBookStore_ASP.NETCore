@@ -1,4 +1,6 @@
 ﻿using HKBookStore.ApiIntegration;
+using HKBookStore.Data.Entities;
+using HKBookStore.Data.Enums;
 using HKBookStore.ViewModels.Catalog.Carts;
 using HKBookStore.ViewModels.Catalog.Orders;
 using Microsoft.AspNetCore.Authorization;
@@ -18,11 +20,35 @@ namespace HKBookStore.WebApp.Controllers
             _orderApiClient = orderApiClient;
         }
 
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> GetAll(string status)
         
         {
-            List<GetOrderViewModel> orders = await _orderApiClient.GetAll();
-            return Ok(orders);
+            List<GetOrderViewModel> orders;
+            switch (status)
+            {
+                case "pending":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Pending);
+                    break;
+                case "approved":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Approved);
+                    break;
+                case "progressing":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Progressing);
+                    break;
+                case "shipped":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Shipped);
+                    break;
+                case "cancelled":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Cancelled);
+                    break;
+                case "refunded":
+                    orders = await _orderApiClient.GetAll(OrderStatus.Refunded);
+                    break;
+                default:
+                    orders = await _orderApiClient.GetAll(null);
+                    break;
+            }
+            return Json(new { data = orders });
         }
 
         public IActionResult Index()

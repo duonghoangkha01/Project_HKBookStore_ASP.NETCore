@@ -12,7 +12,7 @@ namespace HKBookStore.Data.Entities
         public int Id { set; get; }
         public DateTime OrderDate { set; get; }
         public Guid UserId { set; get; }
-        public OrderStatus Status { set; get; }
+        public string Status { set; get; }
 
         public List<OrderDetail> OrderDetails { set; get; }
 
