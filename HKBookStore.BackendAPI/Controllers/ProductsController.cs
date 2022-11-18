@@ -165,6 +165,16 @@ namespace HKBookStore.BackendAPI.Controllers
             return Ok(image);
         }
 
+        [HttpGet("{productId}/images")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetImagesOfProduct(int productId)
+        {
+            var images = await _productService.GetListImages(productId);
+            if (images == null)
+                return BadRequest("Cannot find product");
+            return Ok(images);
+        }
+
         [HttpPut("{id}/categories")]
         [Authorize]
         public async Task<IActionResult> CategoryAssign(int id, [FromBody] CategoryAssignRequest request)

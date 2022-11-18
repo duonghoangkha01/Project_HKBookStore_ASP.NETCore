@@ -16,7 +16,7 @@ namespace HKBookStore.Application.Catalog.Orders
 {
     public interface IOrderService
     {
-        Task<int> AddOrder(Guid userId, CheckoutViewModel checkoutRequest);
+        Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest);
         Task<List<GetOrderViewModel>> GetAll(Guid userId, string? status);
     }
 }

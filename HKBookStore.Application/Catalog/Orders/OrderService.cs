@@ -5,6 +5,7 @@ using HKBookStore.Data.Entities;
 using HKBookStore.Data.Enums;
 using HKBookStore.ViewModels.Catalog.Carts;
 using HKBookStore.ViewModels.Catalog.Orders;
+using HKBookStore.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace HKBookStore.Application.Catalog.Orders
             return data;
         }
 
-        public async Task<int> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)
+        public async Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)
         {
             var orderDetails = new List<OrderDetail>();
             foreach(var item in checkoutRequest.CartItems)
@@ -99,9 +100,15 @@ namespace HKBookStore.Application.Catalog.Orders
             };
             _context.Orders.Add(order);
             
-            await _cartService.DeleteAllCarts(userId);
 
-            return await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
+            if (result > 0)
+            {
+                await _cartService.DeleteAllCarts(userId);
+                return new ApiSuccessResult<bool>();
+            }    
+                
+            return new ApiErrorResult<bool>("Đặt hàng không thành công");
         }
     }
 }

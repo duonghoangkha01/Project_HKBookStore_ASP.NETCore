@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using HKBookStore.ViewModels.Catalog.ProductImages;
 
 namespace HKBookStore.ApiIntegration
 {
@@ -145,6 +146,12 @@ namespace HKBookStore.ApiIntegration
         public async Task<List<ProductViewModel>> GetLatestProducts(int take)
         {
             var data = await GetListAsync<ProductViewModel>($"/api/products/latest/{take}");
+            return data;
+        }
+
+        public async Task<List<ProductImageViewModel>> GetImagesOfProduct(int productId)
+        {
+            var data = await GetListAsync<ProductImageViewModel>($"/api/products/{productId}/images");
             return data;
         }
 

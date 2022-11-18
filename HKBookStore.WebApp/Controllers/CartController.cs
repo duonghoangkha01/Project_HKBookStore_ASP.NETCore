@@ -37,8 +37,10 @@ namespace HKBookStore.WebApp.Controllers
         public async Task<IActionResult> Checkout(CheckoutViewModel checkoutViewModel)
         {
             checkoutViewModel.CartItems = await _cartApiClient.GetCarts();
-            await _orderApiClient.AddOrder(checkoutViewModel);
-            return View(checkoutViewModel);
+            var result = await _orderApiClient.AddOrder(checkoutViewModel);
+            if (result == false)
+                return View(checkoutViewModel);
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> GetListItems()

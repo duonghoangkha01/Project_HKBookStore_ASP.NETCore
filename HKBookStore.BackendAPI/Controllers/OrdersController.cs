@@ -43,7 +43,7 @@ namespace HKBookStore.BackendAPI.Controllers
 
         [HttpPost("add")]
         [Authorize]
-        public async Task<IActionResult> AddItemToCart([FromBody] CheckoutViewModel checkoutRequest)
+        public async Task<IActionResult> AddOrder([FromBody] CheckoutViewModel checkoutRequest)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
@@ -53,10 +53,10 @@ namespace HKBookStore.BackendAPI.Controllers
                 return BadRequest();
             else
             {
-                var affectedResult = await _orderService.AddOrder(userId, checkoutRequest);
-                if (affectedResult == 0)
-                    return BadRequest();
-                return Ok();
+                var result = await _orderService.AddOrder(userId, checkoutRequest);
+                if (!result.IsSuccessed)
+                    return BadRequest(result);
+                return Ok(result);
             }
 
         }

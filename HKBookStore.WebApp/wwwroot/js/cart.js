@@ -57,7 +57,7 @@
                 $.each(res, function (i, item) {
                     var amount = item.price * item.quantity;
                     html += "<tr>"
-                        + "<td class=\"align-middle\"><img src=\"" + $('#hidBaseAddress').val() + item.productImage + "\" style=\"width: 50px;\">" + item.productName + "</td>"
+                        + "<td class=\"align-middle\"><img class=\"float-left\" src=\"" + $('#hidBaseAddress').val() + item.productImage + "\" style=\"width: 50px;\">" + item.productName + "</td>"
                         + "<td class=\"align-middle\">" + numberWithCommas(item.price) + "</td>"
                         + "<td class=\"align-middle\">"
                         + "<div class=\"input-group quantity mx-auto\" style=\"width: 100px;\">"
@@ -80,6 +80,7 @@
                     total += amount;
                 });
                 $('#cart_body').html(html);
+                $('#lbl_subtotal').text(numberWithCommas(total));
                 $('#lbl_total').text(numberWithCommas(total));
             }
         })

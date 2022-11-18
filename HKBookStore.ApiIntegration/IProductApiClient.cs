@@ -1,4 +1,5 @@
-﻿using HKBookStore.ViewModels.Catalog.Products;
+﻿using HKBookStore.ViewModels.Catalog.ProductImages;
+using HKBookStore.ViewModels.Catalog.Products;
 using HKBookStore.ViewModels.Common;
 
 namespace HKBookStore.ApiIntegration
@@ -12,6 +13,7 @@ namespace HKBookStore.ApiIntegration
         Task<ProductViewModel> GetById(int id);
         Task<List<ProductViewModel>> GetFeaturedProducts(int take);
         Task<List<ProductViewModel>> GetLatestProducts(int take);
+        Task<List<ProductImageViewModel>> GetImagesOfProduct(int productId);
         Task<bool> DeleteProduct(int id);
     }
 }
