@@ -36,7 +36,7 @@ namespace HKBookStore.Application.Catalog.Orders
             //            select new { o, od, p };
             
 
-            var query = _context.Orders.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Where(x => x.UserId == userId).ToList();
+            var query = _context.Orders.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Where(x => x.UserId == userId).OrderByDescending(x => x.OrderDate).ToList();
             if (status != null)
                 query = query.Where(x => x.Status == status).ToList();
             var data = new List<GetOrderViewModel>();
@@ -64,6 +64,43 @@ namespace HKBookStore.Application.Catalog.Orders
             }
 
             return data;
+        }
+
+        public async Task<GetDetailOrderViewModel> GetOrder(Guid userId, int orderId)
+        {
+
+
+            var query = await _context.Orders.Include(x => x.OrderDetails).ThenInclude(x => x.Product).Include(x => x.ShippingInfo).Where(x => x.UserId == userId && x.Id == orderId).FirstOrDefaultAsync();
+            var order = new GetDetailOrderViewModel();
+
+
+            order.Id = query.Id;
+            order.OrderDate = query.OrderDate;
+            order.Status = query.Status;
+            order.OrderDetails = new List<GetOrderDetailViewModel>();
+                
+            foreach (var item in query.OrderDetails)
+            {
+                var orderDetail = new GetOrderDetailViewModel()
+                {
+                    ProductName = item.Product.Name,
+                    Quantity = item.Quantity,
+                    Price = item.Price,
+                };
+            order.OrderDetails.Add(orderDetail);
+
+            }
+
+            order.ShippingInfo = new ShippingInfoViewModel()
+            {
+                Name = query.ShippingInfo.Name,
+                Address = query.ShippingInfo.Address,
+                Email = query.ShippingInfo.Email,
+                PhoneNumber = query.ShippingInfo.PhoneNumber    
+            };
+           
+
+            return order;
         }
 
         public async Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)

@@ -12,5 +12,6 @@ namespace HKBookStore.ApiIntegration
     {
         Task<bool> AddOrder(CheckoutViewModel checkoutRequest);
         Task<List<GetOrderViewModel>> GetAll(string? status);
+        Task<GetDetailOrderViewModel> Get(int orderId);
     }
 }

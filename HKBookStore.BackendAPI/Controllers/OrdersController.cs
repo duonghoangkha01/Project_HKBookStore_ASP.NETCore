@@ -61,7 +61,7 @@ namespace HKBookStore.BackendAPI.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         [Authorize]
         public async Task<IActionResult> GetAll([FromQuery]string? status)
         {
@@ -75,6 +75,25 @@ namespace HKBookStore.BackendAPI.Controllers
             {
                 var result = await _orderService.GetAll(userId, status);
                 
+                return Ok(result);
+            }
+
+        }
+
+        [HttpGet("get")]
+        [Authorize]
+        public async Task<IActionResult> Get([FromQuery] int orderId)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
+            var user = await _userManager.FindByNameAsync(claim.Value);
+            Guid userId = user.Id;
+            if (claim == null)
+                return BadRequest();
+            else
+            {
+                var result = await _orderService.GetOrder(userId, orderId);
+
                 return Ok(result);
             }
 

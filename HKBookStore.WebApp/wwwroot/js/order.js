@@ -37,6 +37,7 @@ $(document).ready(function () {
 
 function loadDataTable(status) {
     dataTable = $('#tblData').DataTable({
+        order: [[3, 'desc']],
         ajax: '/Order/GetAll?status=' + status,
         columns: [
             { data: 'id', width: '10%' },
@@ -65,7 +66,7 @@ function loadDataTable(status) {
                 render: function (data) {
                     return `
                         <div class="w-75 btn-group" role="group">
-                        <a href="/Order/Details?orderId=${data}"
+                        <a href="/Order/Detail?orderId=${data}"
                         class="btn btn-primary mx-2"><i class="fa-solid fa-circle-info"></i> Chi tiết</a>
 					</div>
                         `

@@ -29,7 +29,13 @@ namespace HKBookStore.ApiIntegration
 
         public async Task<List<GetOrderViewModel>> GetAll(string status)
         {
-            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders?status="+status);
+            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders/getall?status="+status);
+
+        }
+
+        public async Task<GetDetailOrderViewModel> Get(int orderId)
+        {
+            return await GetAsync<GetDetailOrderViewModel>(@"/api/orders/get?orderId=" + orderId);
 
         }
     }

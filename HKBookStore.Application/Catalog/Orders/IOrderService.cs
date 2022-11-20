@@ -18,5 +18,6 @@ namespace HKBookStore.Application.Catalog.Orders
     {
         Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest);
         Task<List<GetOrderViewModel>> GetAll(Guid userId, string? status);
+        Task<GetDetailOrderViewModel> GetOrder(Guid userId, int orderId);
     }
 }

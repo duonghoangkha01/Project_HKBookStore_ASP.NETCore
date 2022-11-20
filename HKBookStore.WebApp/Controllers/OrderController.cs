@@ -10,6 +10,7 @@ using System.Security.Claims;
 
 namespace HKBookStore.WebApp.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
 
@@ -54,6 +55,12 @@ namespace HKBookStore.WebApp.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Detail(int orderID)
+        {
+            var order = await _orderApiClient.Get(orderID);
+            return View(order);
         }
     }
 }
