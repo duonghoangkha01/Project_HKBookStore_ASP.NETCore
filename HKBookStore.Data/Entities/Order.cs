@@ -18,7 +18,7 @@ namespace HKBookStore.Data.Entities
 
         public AppUser AppUser { get; set; }
         public Invoice Invoice { get; set; }
-        public int PaymentId { get; set; }
+        
         public Payment Payment { get; set; }
 
         public int ShippingFeeId { get; set; }

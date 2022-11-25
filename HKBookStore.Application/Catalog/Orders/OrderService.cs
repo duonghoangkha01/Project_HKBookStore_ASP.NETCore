@@ -132,7 +132,7 @@ namespace HKBookStore.Application.Catalog.Orders
                 OrderDetails = orderDetails,
                 UserId = userId,
                 ShippingFeeId = 1,
-                PaymentId = 1,
+                //PaymentId = 1,
                 ShippingInfo = shippingInfo,
             };
             _context.Orders.Add(order);

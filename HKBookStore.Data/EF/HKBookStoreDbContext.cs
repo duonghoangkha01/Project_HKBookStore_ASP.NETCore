@@ -40,6 +40,7 @@ namespace HKBookStore.Data.EF
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentMethodConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
@@ -62,6 +63,7 @@ namespace HKBookStore.Data.EF
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
