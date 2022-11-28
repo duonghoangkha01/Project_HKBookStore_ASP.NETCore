@@ -8,9 +8,7 @@ namespace HKBookStore.Data.Enums
 {
     public static class PaymentStatus
     {
-        public const string PaymentStatusPending = "Pending";
-        public const string PaymentStatusApproved = "Approved";
-        public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
-        public const string PaymentStatusRejected = "Rejected";
+        public const string PaymentStatusUnpaid = "Chưa thanh toán";
+        public const string PaymentStatusPaid = "Đã thanh toán";
     }
 }

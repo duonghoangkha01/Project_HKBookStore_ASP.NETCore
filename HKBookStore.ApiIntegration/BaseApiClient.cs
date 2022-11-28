@@ -1,4 +1,5 @@
 ﻿using HKBookStore.Utilities.Constants;
+using HKBookStore.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -113,6 +114,48 @@ namespace HKBookStore.ApiIntegration
             var response = await client.PostAsync(url, stringContent);
 
             return response.IsSuccessStatusCode;
+        }
+
+        protected async Task<ApiResult<int>> PostAsync2<TResponse>(string url, StringContent stringContent)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+
+            var response = await client.PostAsync(url, stringContent);
+
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<int>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<int>>(result);
+        }
+
+        protected async Task<ApiResult<bool>> PutAsync2<TResponse>(string url, StringContent stringContent)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+
+            var response = await client.PutAsync(url, stringContent);
+
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
     }

@@ -1,5 +1,7 @@
 ﻿using HKBookStore.ViewModels.Catalog.Carts;
 using HKBookStore.ViewModels.Catalog.Orders;
+using HKBookStore.ViewModels.Catalog.Payments;
+using HKBookStore.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -20,16 +22,16 @@ namespace HKBookStore.ApiIntegration
         {
         }
 
-        public async Task<bool> AddOrder(CheckoutViewModel checkoutRequest)
+        public async Task<ApiResult<int>> AddOrder(CheckoutViewModel checkoutRequest)
         {
             var json = JsonConvert.SerializeObject(checkoutRequest);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            return await PostAsync<bool>(@"api/orders/add", httpContent);
+            return await PostAsync2<ApiResult<int>>(@"api/orders/add", httpContent);
         }
 
         public async Task<List<GetOrderViewModel>> GetAll(string status)
         {
-            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders/getall?status="+status);
+            return await GetAsync<List<GetOrderViewModel>>(@"/api/orders/getall?status=" + status);
 
         }
 
@@ -37,6 +39,13 @@ namespace HKBookStore.ApiIntegration
         {
             return await GetAsync<GetDetailOrderViewModel>(@"/api/orders/get?orderId=" + orderId);
 
+        }
+
+        public async Task<ApiResult<bool>> UpdateStatusPayment(UpdatePaymentViewModel updatePaymentViewModel)
+        {
+            var json = JsonConvert.SerializeObject(updatePaymentViewModel);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            return await PutAsync2<ApiResult<bool>>(@"api/orders/updatestatuspayment", httpContent);
         }
     }
 }

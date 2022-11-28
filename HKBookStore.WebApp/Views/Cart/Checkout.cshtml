@@ -33,18 +33,15 @@
                 <div class="mb-4">
                     <h4 class="font-weight-semi-bold mb-4">Phương thức thanh toán</h4>
                     <div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Thanh toán khi nhận hàng</label>
+                        @foreach(var item in Model.PaymentMethodViewModels){
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" asp-for="PaymentMethodId"  value="@item.Id" id="PaymentMethod@(item.Id)">
+                                    <label class="custom-control-label" for="PaymentMethod@(item.Id)">@item.Description</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Thanh toán bằng Momo</label>
-                            </div>
-                        </div>
+                        }
+                        
                     </div>
                 </div>
                 <div class="mb-4">

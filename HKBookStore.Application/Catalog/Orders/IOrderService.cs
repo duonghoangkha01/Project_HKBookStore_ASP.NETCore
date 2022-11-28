@@ -1,6 +1,7 @@
 ﻿using HKBookStore.Data.Entities;
 using HKBookStore.ViewModels.Catalog.Carts;
 using HKBookStore.ViewModels.Catalog.Orders;
+using HKBookStore.ViewModels.Catalog.Payments;
 using HKBookStore.ViewModels.Catalog.ProductImages;
 using HKBookStore.ViewModels.Catalog.Products;
 using HKBookStore.ViewModels.Common;
@@ -16,8 +17,9 @@ namespace HKBookStore.Application.Catalog.Orders
 {
     public interface IOrderService
     {
-        Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest);
+        Task<ApiResult<int>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest);
         Task<List<GetOrderViewModel>> GetAll(Guid userId, string? status);
         Task<GetDetailOrderViewModel> GetOrder(Guid userId, int orderId);
+        Task<ApiResult<bool>> UpdateStatusPayment(Guid userId, UpdatePaymentViewModel updatePaymentViewModel);
     }
 }

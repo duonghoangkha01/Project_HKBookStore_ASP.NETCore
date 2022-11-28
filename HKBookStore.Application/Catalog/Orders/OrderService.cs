@@ -5,10 +5,12 @@ using HKBookStore.Data.Entities;
 using HKBookStore.Data.Enums;
 using HKBookStore.ViewModels.Catalog.Carts;
 using HKBookStore.ViewModels.Catalog.Orders;
+using HKBookStore.ViewModels.Catalog.Payments;
 using HKBookStore.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -103,7 +105,7 @@ namespace HKBookStore.Application.Catalog.Orders
             return order;
         }
 
-        public async Task<ApiResult<bool>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)
+        public async Task<ApiResult<int>> AddOrder(Guid userId, CheckoutViewModel checkoutRequest)
         {
             var orderDetails = new List<OrderDetail>();
             foreach(var item in checkoutRequest.CartItems)
@@ -124,6 +126,16 @@ namespace HKBookStore.Application.Catalog.Orders
                 UserId = userId,
             };
             
+            var payment = new Payment()
+            {
+                PaymentMethodId = checkoutRequest.PaymentMethodId,
+                Status = PaymentStatus.PaymentStatusUnpaid,
+                Information = "Đang chờ thanh toán"
+            };
+            var invoice = new Invoice()
+            {
+                DateCreated = DateTime.Now,
+            };
 
             var order = new Order()
             {
@@ -132,8 +144,10 @@ namespace HKBookStore.Application.Catalog.Orders
                 OrderDetails = orderDetails,
                 UserId = userId,
                 ShippingFeeId = 1,
-                //PaymentId = 1,
+                Payment = payment,
                 ShippingInfo = shippingInfo,
+                Total = checkoutRequest.Total,
+                Invoice = invoice,
             };
             _context.Orders.Add(order);
             
@@ -142,10 +156,21 @@ namespace HKBookStore.Application.Catalog.Orders
             if (result > 0)
             {
                 await _cartService.DeleteAllCarts(userId);
-                return new ApiSuccessResult<bool>();
+                return new ApiSuccessResult<int>(order.Id);
             }    
                 
-            return new ApiErrorResult<bool>("Đặt hàng không thành công");
+            return new ApiErrorResult<int>("Đặt hàng không thành công");
+        }
+
+        public async Task<ApiResult<bool>> UpdateStatusPayment(Guid userId, UpdatePaymentViewModel updatePaymentViewModel)
+        {
+            var order = await _context.Orders.Include(x => x.Payment).Where(x => x.Id == updatePaymentViewModel.OrderId).FirstOrDefaultAsync();
+            order.Payment.Status = updatePaymentViewModel.Status;
+            order.Payment.Information = "Đã hoàn thành thanh toán";
+            var result = await _context.SaveChangesAsync();
+            if (result > 0)
+                return new ApiSuccessResult<bool>();
+            return new ApiErrorResult<bool>();
         }
     }
 }

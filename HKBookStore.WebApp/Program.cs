@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using HKBookStore.ApiIntegration;
 using HKBookStore.ViewModels.System.Users;
+using HKBookStore.WebApp.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,8 @@ builder.Services.AddTransient<ICategoryApiClient, CategoryApiClient>();
 builder.Services.AddTransient<ICartApiClient, CartApiClient>();
 builder.Services.AddTransient<IOrderApiClient, OrderApiClient>();
 builder.Services.AddTransient<IUserApiClient, UserApiClient>();
+builder.Services.AddTransient<IPaymentMethodApiClient, PaymentMethodApiClient>();
+builder.Services.AddTransient<IVnPayService, VnPayService>();
 
 var app = builder.Build();
 

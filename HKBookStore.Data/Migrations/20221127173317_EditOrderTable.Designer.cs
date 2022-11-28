@@ -4,6 +4,7 @@ using HKBookStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HKBookStore.Data.Migrations
 {
     [DbContext(typeof(HKBookStoreDbContext))]
-    partial class HKBookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221127173317_EditOrderTable")]
+    partial class EditOrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace HKBookStore.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "8fea4b3a-d409-4e57-b70b-54e68825412a",
+                            ConcurrencyStamp = "cc1b1426-f896-40b3-bbf9-031536f39a7d",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -163,7 +165,7 @@ namespace HKBookStore.Data.Migrations
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
                             Address = "An Biên, Kiên Giang",
-                            ConcurrencyStamp = "0660ef14-d270-4223-bf69-46e08747a2b9",
+                            ConcurrencyStamp = "6c587109-b2a6-45c0-a8a3-1c5af5a49f7e",
                             Dob = new DateTime(2001, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "duonghoangkha2001@gmail.com",
                             EmailConfirmed = true,
@@ -172,7 +174,7 @@ namespace HKBookStore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "duonghoangkha2001@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEkgIJQZbdyHMwSzmARnhS9W+6LAQCprAa36dcqDypGSEJHuIsygIqvq/saQBs7VtA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENp2mf7h+iSYeChPoXI410CvI8o2NnXnimupb0q+1cGFa/OTn/8ZQCEsMgyc6UDp7g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -553,7 +555,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 1,
                             Author = "Paulo Coelho",
-                            DateCreated = new DateTime(2022, 11, 28, 2, 9, 8, 332, DateTimeKind.Local).AddTicks(1476),
+                            DateCreated = new DateTime(2022, 11, 28, 0, 33, 17, 448, DateTimeKind.Local).AddTicks(7005),
                             Description = "Đây là mô tả của sách Nhà Giả Kim (Tái Bản 2020)",
                             Details = "Đây là chi tiết của sách Nhà Giả Kim (Tái Bản 2020)",
                             Name = "Nhà Giả Kim (Tái Bản 2020)",
@@ -566,7 +568,7 @@ namespace HKBookStore.Data.Migrations
                         {
                             Id = 2,
                             Author = "Khotudien",
-                            DateCreated = new DateTime(2022, 11, 28, 2, 9, 8, 332, DateTimeKind.Local).AddTicks(1489),
+                            DateCreated = new DateTime(2022, 11, 28, 0, 33, 17, 448, DateTimeKind.Local).AddTicks(7015),
                             Description = "Đây là mô tả của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Details = "Đây là chi tiết của sách Từ Điển Tiếng “Em” - Tái Bản 2021",
                             Name = "Từ Điển Tiếng “Em” - Tái Bản 2021",

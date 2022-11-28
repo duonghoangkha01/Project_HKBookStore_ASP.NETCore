@@ -1,6 +1,7 @@
 ﻿using HKBookStore.Application.Catalog.Orders;
 using HKBookStore.Data.Entities;
 using HKBookStore.ViewModels.Catalog.Orders;
+using HKBookStore.ViewModels.Catalog.Payments;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -99,24 +100,24 @@ namespace HKBookStore.BackendAPI.Controllers
 
         }
 
-        //[HttpPut("update")]
-        //[Authorize]
-        //public async Task<IActionResult> UpdateCart([FromQuery] int productId, [FromQuery] int quantity)
-        //{
-        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
-        //    var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
-        //    var user = await _userManager.FindByNameAsync(claim.Value);
-        //    Guid userId = user.Id;
-        //    if (claim == null)
-        //        return BadRequest();
-        //    else
-        //    {
-        //        var affectedResult = await _cartService.UpdateCart(userId, productId, quantity);
-        //        if (affectedResult == 0)
-        //            return BadRequest();
-        //        return Ok();
-        //    }
+        [HttpPut("updatestatuspayment")]
+        [Authorize]
+        public async Task<IActionResult> UpdateStatusPayment([FromBody] UpdatePaymentViewModel updatePaymentViewModel)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.Name);
+            var user = await _userManager.FindByNameAsync(claim.Value);
+            Guid userId = user.Id;
+            if (claim == null)
+                return BadRequest();
+            else
+            {
+                var result = await _orderService.UpdateStatusPayment(userId, updatePaymentViewModel);
+                if (!result.IsSuccessed)
+                    return BadRequest(result);
+                return Ok(result);
+            }
 
-        //}
+        }
     }
 }

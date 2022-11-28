@@ -5,6 +5,7 @@ using HKBookStore.Application.Catalog.Carts;
 using HKBookStore.Application.Catalog.Categories;
 using HKBookStore.Application.Catalog.Common;
 using HKBookStore.Application.Catalog.Orders;
+using HKBookStore.Application.Catalog.PaymentMethods;
 using HKBookStore.Application.Catalog.Products;
 using HKBookStore.Application.System.Roles;
 using HKBookStore.Application.System.Users;
@@ -41,6 +42,7 @@ builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<ISlideService, SlideService>();
+builder.Services.AddTransient<IPaymentMethodService, PaymentMethodService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
