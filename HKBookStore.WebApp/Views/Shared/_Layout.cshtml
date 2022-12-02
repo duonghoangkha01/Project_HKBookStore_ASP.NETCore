@@ -84,6 +84,11 @@
                                 </div>
                             </div>*@
                             <a href="#" class="nav-item nav-link">Liên hệ</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Order/Index" class="nav-item nav-link">Đơn hàng của tôi</a>
+                            }
+
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             @if (User.Identity.IsAuthenticated)

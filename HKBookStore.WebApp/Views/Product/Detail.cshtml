@@ -8,7 +8,7 @@
 <!-- Shop Detail Start -->
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
-        <div class="col-lg-5 pb-5">
+        <div class="col-lg-3 pb-3">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner border">
                     @foreach(var item in Model.ProductImages){
@@ -25,10 +25,10 @@
                 <i class="fa fa-2x fa-angle-right text-dark"></i>
             </a>
         </div>
-        
-    
 
-        <div class="col-lg-7 pb-5">
+        <div class="col-lg-1 pb-3"></div>
+
+        <div class="col-lg-8 pb-3">
             <h3 class="font-weight-semi-bold">@Model.Product.Name</h3>
             <div class="d-flex mb-3">
                 <div class="text-primary mr-2">
@@ -42,7 +42,7 @@
             </div>
             @{var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
             <h3 class="font-weight-semi-bold mb-4">@String.Format(info, "{0:c}", Model.Product.Price)</h3>
-            <p class="mb-4">@Model.Product.Description</p>
+            @*<p class="mb-4">@Model.Product.Description</p>*@
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 130px;">
                     <div class="input-group-btn">
@@ -81,18 +81,18 @@
     <div class="row px-xl-5">
         <div class="col">
             <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Thông tin chi tiết</a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Thông tin chi tiết</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Mô tả</a>
                 <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Nhận xét (0)</a>
             </div>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3">Mô tả về sách</h4>
-                    <p>@Model.Product.Description</p>
-                </div>
-                <div class="tab-pane fade" id="tab-pane-2">
+                <div class="tab-pane fade" id="tab-pane-1">
                     <h4 class="mb-3">Thông tin chi tiết về sách</h4>
-                    <p>@Model.Product.Details</p>
+                    @Html.Raw(@Model.Product.Details)
+                </div>
+                <div class="tab-pane fade show active" id="tab-pane-2">
+                    <h4 class="mb-3">Mô tả về sách</h4>
+                    @Html.Raw(@Model.Product.Description)
                 </div>
                 <div class="tab-pane fade" id="tab-pane-3">
                     <div class="row">
