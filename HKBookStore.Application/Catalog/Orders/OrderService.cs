@@ -1,5 +1,6 @@
 ﻿using HKBookStore.Application.Catalog.Carts;
 using HKBookStore.Application.Catalog.Common;
+using HKBookStore.Application.Utilities.MailSender;
 using HKBookStore.Data.EF;
 using HKBookStore.Data.Entities;
 using HKBookStore.Data.Enums;
@@ -22,11 +23,13 @@ namespace HKBookStore.Application.Catalog.Orders
     {
         private readonly HKBookStoreDbContext _context;
         private readonly ICartService _cartService;
+        private readonly IMailSenderService _mailSender;
 
-        public OrderService(HKBookStoreDbContext context, ICartService cartService)
+        public OrderService(HKBookStoreDbContext context, ICartService cartService, IMailSenderService mailSender)
         {
             _context = context;
             _cartService = cartService;
+            _mailSender = mailSender;
         }
 
         public async Task<List<GetOrderViewModel>> GetAll(Guid userId, string? status)
@@ -156,6 +159,7 @@ namespace HKBookStore.Application.Catalog.Orders
             if (result > 0)
             {
                 await _cartService.DeleteAllCarts(userId);
+                _mailSender.SendMailComfirmOrder(order);
                 return new ApiSuccessResult<int>(order.Id);
             }    
                 
