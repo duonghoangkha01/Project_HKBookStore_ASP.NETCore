@@ -150,7 +150,8 @@ namespace HKBookStore.Application.System.Users
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
-                PhoneNumber = request.PhoneNumber
+                PhoneNumber = request.PhoneNumber,
+                Address = request.Address,
             };
             var result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)

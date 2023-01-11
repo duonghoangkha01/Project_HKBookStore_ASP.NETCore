@@ -16,8 +16,12 @@ namespace HKBookStore.Application.Utilities.MailSender
         {
             try
             {
+                string body = "<p>Chào " +  order.AppUser.LastName + ",</p>" +
+                              "<p>Cảm ơn quý khách đã đặt hàng tại HK Bookstore.</p>"+
+                              "<p>HK Bookstore rất vui thông báo đơn hàng #" + order.Id + " của quý khách đang được tiếp nhận và đang trong quá; trình xử lý. HK Bookstore sẽ thông báo đến quý khách ngay khi hàng chuẩn bị được giao.</p>" +
+                              "<p>Quý khách có thể xem chi tiết đơn hàng <a href=\"https://localhost:5003/order/detail?orderid=" + order.Id + "\" rel=\"noopener noreferrer\" target=\"_blank\">tại đây</a>.</p>";
                 // tạo một tin nhắn và thêm những thông tin cần thiết như: ai gửi, người nhận, tên tiêu đề, và có đôi lời gì cần nhắn nhủ
-                MailMessage mail = new MailMessage("info.hkbookstore@gmail.com", order.AppUser.Email, "Xác nhận đơn hàng", "Cảm ơn bạn đã đặt hàng!"); //
+                MailMessage mail = new MailMessage("info.hkbookstore@gmail.com", order.AppUser.Email, "Xác nhận đơn hàng", body); //
                 mail.IsBodyHtml = true;
                 //gửi tin nhắn
                 SmtpClient client = new SmtpClient("smtp.gmail.com");
